@@ -13,7 +13,7 @@ pipeline {
 
         stage("Checkout from SCM") {
                steps {
-                   git branch: 'main', credentialsId: 'github', url: 'https://github.com/abhola/gitops-register-app'
+                   git branch: 'main', credentialsId: 'githubcdjob', url: 'https://github.com/abhola/gitops-register-app'
                }
         }
 
@@ -35,7 +35,7 @@ pipeline {
                    git add deployment.yaml
                    git commit -m "Updated Deployment Manifest"
                 """
-                withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                withCredentials([gitUsernamePassword(credentialsId: 'githubcdjob', gitToolName: 'Default')]) {
                 /*  sh "git push https://github.com/abhola/gitops-register-app main" */
                     sh "git push https://github.com/abhola/gitops-register-app.git HEAD:main"    
                 }
